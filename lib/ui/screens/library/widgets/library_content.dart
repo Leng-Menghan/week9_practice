@@ -14,7 +14,7 @@ class LibraryContent extends StatelessWidget {
     // 1- Read the globbal song repository
     LibraryViewModel mv = context.watch<LibraryViewModel>();
 
-    AsyncValue<List<Song>> asyncValue = mv.songsValue;
+    AsyncValue<List<Map<String, dynamic>>> asyncValue = mv.songsValue;
 
     Widget content;
     switch (asyncValue.state) {
@@ -26,16 +26,19 @@ class LibraryContent extends StatelessWidget {
         content = Center(child: Text('error = ${asyncValue.error!}', style: TextStyle(color: Colors.red),));
 
       case AsyncValueState.success:
-        List<Song> songs = asyncValue.data!;
+        List<Map<String, dynamic>> songs = asyncValue.data!;
         content = ListView.builder(
           itemCount: songs.length,
-          itemBuilder: (context, index) => SongTile(
-            song: songs[index],
-            isPlaying: mv.isSongPlaying(songs[index]),
-            onTap: () {
-              mv.start(songs[index]);
-            },
-          ),
+          itemBuilder: (context, index) {
+            Song song = songs[index]['song'];
+            return SongTile(
+              songMap: songs[index],
+              isPlaying: mv.isSongPlaying(song),
+              onTap: () {
+                mv.start(song);
+              },
+            );
+          },
         );
     }
 

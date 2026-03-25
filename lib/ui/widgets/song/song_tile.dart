@@ -5,16 +5,19 @@ import '../../../model/songs/song.dart';
 class SongTile extends StatelessWidget {
   const SongTile({
     super.key,
-    required this.song,
+    required this.songMap,
     required this.isPlaying,
-    required this.onTap,
+    required this.onTap, 
   });
 
-  final Song song;
+  final Map<String, dynamic> songMap;
   final bool isPlaying;
   final VoidCallback onTap;
-  
+
+  Song get song => songMap['song'];
   String get duration => "${song.duration.inMinutes}:${(song.duration.inSeconds % 60).toString().padLeft(2, '0')} mns";
+  String get artistName => songMap['artistName'];
+  String get genre => songMap['artistGenre'];
   
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class SongTile extends StatelessWidget {
         child: ListTile(
           onTap: onTap,
           title: Text(song.title),
-          subtitle: Text(duration),
+          subtitle: Text("$duration $artistName - $genre"),
           leading: CircleAvatar(
             backgroundImage: NetworkImage(song.imageUrl),
           ),
