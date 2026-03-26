@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:week9_practice/data/repositories/artists/artist_repository.dart';
+import '../../../data/repositories/artists/artist_repository.dart';
 import 'view_model/artist_view_model.dart';
-import '../../../data/repositories/songs/song_repository.dart';
-import '../../states/player_state.dart';
 import 'widgets/artist_content.dart';
 
 class ArtistScreen extends StatelessWidget {

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:week9_practice/model/artists/artist.dart';
-import '../../../../model/songs/song.dart';
+import '../../../../model/artists/artist.dart';
 import '../../../theme/theme.dart';
 import '../../../utils/async_value.dart';
 import '../../../widgets/artist/artist_tile.dart';
-import '../../../widgets/song/song_tile.dart';
 import '../view_model/artist_view_model.dart';
 
 class ArtistContent extends StatelessWidget {
